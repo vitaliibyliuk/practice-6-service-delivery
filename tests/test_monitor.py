@@ -43,3 +43,7 @@ def test_rejects_bad_environment(configured, monkeypatch, variable, value):
     monkeypatch.setenv(variable, value)
     with pytest.raises(ValueError, match=variable):
         configured()
+
+
+def test_unregistered_route_returns_404(configured):
+    assert configured().test_client().get("/missing").status_code == 404
