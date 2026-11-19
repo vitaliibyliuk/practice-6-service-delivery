@@ -13,7 +13,7 @@ def configured(monkeypatch):
 
 @pytest.mark.parametrize(
     ("path", "expected"),
-    [("/health", {"ready": True}), ("/version", {"revision": "lab.12"})],
+    [("/health", {"ready": True}), ("/version", {"revision": "incorrect-revision"})],
 )
 def test_public_json(configured, path, expected):
     result = configured().test_client().get(path)
