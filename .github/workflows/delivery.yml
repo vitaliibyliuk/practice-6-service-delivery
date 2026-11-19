@@ -1,0 +1,148 @@
+name: Initialize lab source
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seed:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v6
+      - name: Import prepared source and create drill branches
+        shell: bash
+        run: |
+          test ! -e monitor.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          base64 --decode <<'SOURCE_ARCHIVE' | tar -xz
+          H4sIAAAAAAAAA+08a3MbR3L6vL9ivHZFgA5Y4k0RCeqsk2iLjkWySEqOQzPgAhiAay524d0FRZph
+          lWSd75wql5WqqOTKh8RJ5Q/QsmTJelblFwB/wb8k3T0z+wBAUk6Z9PmMubOwO4+enn5NT08ve+Zu
+          vWO7DdOub3Gzxb1zP3/JQalUKvQLZfQXGkvn8uXC7Gx5tjBbLEF9vlQuls91TgGXsdL3A9ODKT3X
+          DY7rd1L76OJ+JaVcYE232+VOUJu7eJGbRZPPzVaK7bnibLmZa+aLBfgvd7GYL+abTbNcqLTntF8a
+          52n5+YrRcpvb3LM6juvxU5pD6H/paP2frYzqf7FcgfZTwidRfuP6f0F74wpJQNuyufZG13WswPWM
+          3p72RqfvWE3Xc4ym67SpxuOf9C2Po7XwjWA3mFqCX30xuLNj8F2z27NPS/1P1P98fnZM/4uF4lT/
+          z6Cszq/cWLg8X1+4dund+VrPM5uB1eSVrDQE2Z1G1Xabpq2pjstLK2u1i/lcTlu+/of3F1avzl9R
+          dXOlqUH4tRWjYwWnuvmfe439v5If0/8cnhdOD6Wo/Mb1H+2/ZuzAvzNavd7ba5rNLV6vz2iw4Qfc
+          D+pUMaN5vOd6gT8z1fC/rhI5f6c3x0n6Pwtn/VH9z+em/v9ZlHdWlq4xUPUt16kWjXwx69tWN9tw
+          3e2brtd9298yC+VK1Sybs7n8LG83y3OVOZ7LmbzQmMs3L/JGrgK8Ks2Z5cpcpVwwzVK73SyVoXNl
+          Dqt5qdycLWgfLK38/ZWFFTbj9oIZ6Vtol5eWP2SjZwpmzGgr1xdZz+oxywHm2DbLZh03S4Yo27I8
+          lvXGRglY0emFjR5eEOyllXfZyvz785dWwd+5UoMFbje409zS5hdvxBve2o9eDthHGoOyMn/pysLi
+          /OpqzeNma0/WjjlFsn75w7WrS4tXlhbXPlhZWJv/w4dr85eXrszX8tp1GMLy+VwhV6V/tfl/WF5a
+          nWfkUc0vrq18uLy0sLjG1nW1Aj3D9GwWl2F18Hl0ZVgnF15tAnIBr5u9Xiqtb7yOrcZ1XZs3uq1T
+          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
+          lmmZFln+DzAgycQAeAAA
+          SOURCE_ARCHIVE
+          git add -- . ':!.github'
+          git commit -m 'Add monitor sources and verification tools'
+          git switch -c scenario/broken-test
+          sed -i 's/"revision": "lab.12"/"revision": "incorrect-revision"/' tests/test_monitor.py
+          git add tests/test_monitor.py
+          git commit -m 'Drill: expect a wrong revision from the API'
+          git switch -c scenario/offline main
+          sed -i 's/READINESS=ready/READINESS=offline/' Dockerfile
+          git add Dockerfile
+          git commit -m 'Drill: publish an image configured to return 503'
+          git switch -c codex/check-unknown-route main
+          cat >> tests/test_monitor.py <<'EOF'
+          
+          
+          def test_unregistered_route_returns_404(configured):
+              assert configured().test_client().get("/missing").status_code == 404
+          EOF
+          git add tests/test_monitor.py
+          git commit -m 'Cover requests to unknown routes'
+          git push --atomic origin main scenario/broken-test scenario/offline codex/check-unknown-route
