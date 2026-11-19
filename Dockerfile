@@ -5,7 +5,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY monitor.py gunicorn.conf.py ./
 ARG RELEASE_ID=workbench
 ENV RELEASE_ID=${RELEASE_ID} \
-    READINESS=ready \
+    READINESS=offline \
     SERVICE_PORT=8100 \
     PYTHONDONTWRITEBYTECODE=1
 USER 11020:11020
