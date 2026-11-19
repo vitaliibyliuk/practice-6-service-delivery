@@ -1,0 +1,18 @@
+name: practice6-delivery-vb
+services:
+  monitor:
+    image: ${SERVICE_IMAGE:?Set SERVICE_IMAGE in .env}
+    environment:
+      SERVICE_PORT: ${SERVICE_PORT:-8100}
+    ports:
+      - "127.0.0.1:${PUBLISHED_PORT:-8194}:${SERVICE_PORT:-8100}"
+    init: false
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os, urllib.request; urllib.request.urlopen('http://127.0.0.1:' + os.environ['SERVICE_PORT'] + '/health', timeout=2).close()"]
+      interval: 2s
+      timeout: 3s
+      retries: 4
+      start_period: 3s

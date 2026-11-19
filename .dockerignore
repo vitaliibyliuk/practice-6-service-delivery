@@ -1,0 +1,5 @@
+*
+!Dockerfile
+!monitor.py
+!gunicorn.conf.py
+!requirements.txt
